@@ -69,10 +69,10 @@ export default function Trust() {
   }, []);
 
   const items = [
-    { value: 30, label: "Proyectos realizados", prefix: "+", suffix: "" },
+    { value: 50, label: "Proyectos realizados", prefix: "+", suffix: "" },
     { value: 4, label: "Años de experiencia", prefix: "+", suffix: "" },
     { value: 100, label: "Atención personalizada", prefix: "", suffix: "%" },
-    { value: 5, label: "Servicios distintos", prefix: "+", suffix: "" },
+    { value: 5, label: "Servicios diferentes para tí", prefix: "+", suffix: "" },
   ];
 
   return (

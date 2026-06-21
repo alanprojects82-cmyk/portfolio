@@ -29,9 +29,9 @@ const featured: Project[] = [
     result: 'Percepción de marca premium y mayor captación de pacientes.',
     link: 'https://www.facebook.com/profile.php?id=61560210330673',
     images: [
+      '/projects/negocio1/post presentacion caam.jpg',
       '/projects/negocio1/logo caam.png',
       '/projects/negocio1/post caam.jpg',
-      '/projects/negocio1/post presentacion caam.jpg',
       '/projects/negocio1/screenshot face caam.png',
     ],
   },
@@ -43,10 +43,10 @@ const featured: Project[] = [
     result: 'Una identidad sofisticada acorde a su experiencia de hospedaje.',
     link: 'https://hotelpaseodelapresa.vercel.app',
     images: [
+      '/projects/negocio2/qr hotel.jpeg',
       '/projects/negocio2/das2 hotel.png',
       '/projects/negocio2/hotel fachada.jpg',
       '/projects/negocio2/pag hotel.png',
-      '/projects/negocio2/qr hotel.jpeg',
     ],
   },
   {
@@ -66,11 +66,12 @@ const featured: Project[] = [
   },
   {
     name: 'Los Gallos',
-    sector: 'peluquería · Barbería',
+    sector: 'Barbería',
     problem: 'Marca sin identidad en redes sociales.',
     solution: 'Branding con carácter y contenido para redes sociales.',
-    result: 'Una marca memorable con fuerte presencia local.',
-    link: 'https://www.facebook.com/search/top?q=peluqueria%20los%20gallos%20ex%20del%20cantador%20ahora%20en%20lomas%20del',
+    result: 'Marca memorable con fuerte presencia local.',
+    link:
+      'https://www.facebook.com/search/top?q=peluqueria%20los%20gallos',
     images: [
       '/projects/negocio3/diseño nuevo logo.jpg',
       '/projects/negocio3/logo peluqueria_page-0001.jpg',
@@ -79,11 +80,11 @@ const featured: Project[] = [
     ],
   },
   {
-    name: 'Vidriería y Aluminios MG',
-    sector: 'Construcción · Manufactura',
-    problem: 'Ausencia de presencia digital profesional.',
-    solution: 'Identidad corporativa y catálogo digital de productos.',
-    result: 'Mayor alcance y confianza con nuevos clientes.',
+    name: 'Vidriería MG',
+    sector: 'Construcción',
+    problem: 'Sin presencia digital profesional.',
+    solution: 'Identidad corporativa y catálogo digital.',
+    result: 'Mayor confianza y clientes nuevos.',
     link: 'https://www.facebook.com/MGVidrioyAluminio',
     images: [
       '/projects/negocio5/diseño tarjeta vidrios oscar frente2.jpg',
@@ -92,6 +93,15 @@ const featured: Project[] = [
       '/projects/negocio5/tarjetas mg.png',
     ],
   },
+]
+
+const secondaryProjects = [
+  { title: 'Casetas Turísticas de Guanajuato', category: 'Turismo' },
+  { title: 'Discografía Ignacio Mendoza', category: 'Producción Musical' },
+  { title: 'Portadas de Revistas Guanajuatenses', category: 'Editorial' },
+  { title: 'Diseño de Logotipos para Negocios', category: 'Branding' },
+  { title: 'Material Publicitario Hoteles', category: 'Marketing' },
+  { title: 'Identidad Visual Restaurantes', category: 'Branding' },
 ]
 
 function FeaturedProject({
@@ -128,60 +138,48 @@ function FeaturedProject({
         reversed ? 'lg:[direction:rtl]' : ''
       }`}
     >
-      {/* 🖼️ IMAGENES (FIX DEFINITIVO SIN MOCHAS) */}
+      {/* IMÁGENES */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.96 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.9 }}
-        className="group relative h-[420px] md:h-[520px] overflow-hidden rounded-2xl border border-border bg-gradient-to-b from-white/5 to-black/10 flex items-center justify-center"
+        className="group relative h-[420px] md:h-[520px] overflow-hidden rounded-2xl border border-border bg-black/10 flex items-center justify-center"
       >
         <AnimatePresence mode="wait">
           <motion.div
             key={imgIndex}
-            style={{ y: yImg }}
             initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.02 }}
             transition={{ duration: 0.4 }}
-            className="absolute inset-0 flex items-center justify-center"
+            className="absolute inset-0"
+            style={{ y: yImg }}
           >
             <Image
               src={project.images[imgIndex]}
               alt={project.name}
               fill
-              sizes="100vw"
-              className="
-                object-contain
-                p-6
-                transition-transform duration-700
-              "
+              className="object-contain p-6"
               priority={index === 0}
             />
           </motion.div>
         </AnimatePresence>
 
-        {/* overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-black/30" />
+        <div className="absolute inset-0 bg-black/30" />
 
-        {/* contador */}
-        <span className="absolute left-5 top-5 rounded-full border border-gold/40 bg-black/40 px-4 py-1.5 text-xs tracking-wide text-gold backdrop-blur-md">
+        <span className="absolute left-5 top-5 text-xs text-gold">
           0{index + 1} / {project.images.length}
         </span>
 
-        {/* controles */}
         {project.images.length > 1 && (
           <>
             <button
               onClick={prev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/60 px-3 py-2 text-white hover:bg-black/80"
+              className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 px-3 py-2 text-white"
             >
               ←
             </button>
 
             <button
               onClick={next}
-              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/60 px-3 py-2 text-white hover:bg-black/80"
+              className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 px-3 py-2 text-white"
             >
               →
             </button>
@@ -189,56 +187,25 @@ function FeaturedProject({
         )}
       </motion.div>
 
-      {/* 📝 INFO */}
-      <div className="flex flex-col gap-6 [direction:ltr]">
-        <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-gold">
-            {project.sector}
-          </p>
+      {/* INFO */}
+      <div className="flex flex-col gap-6">
+        <p className="text-xs uppercase tracking-[0.3em] text-gold">
+          {project.sector}
+        </p>
 
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 mt-3"
-          >
-            <h3 className="
-              font-heading
-              text-3xl
-              font-light
-              text-foreground
-              sm:text-4xl
-              underline
-              decoration-gold/60
-              underline-offset-4
-              hover:text-gold
-              transition
-            ">
-              {project.name}
-            </h3>
+        <a
+          href={project.link}
+          target="_blank"
+          className="font-heading text-3xl underline decoration-gold/60"
+        >
+          {project.name}
+        </a>
 
-            <span className="opacity-0 group-hover:opacity-100 transition text-gold">
-              ↗
-            </span>
-          </a>
+        <div className="border-l border-border pl-6 space-y-4 text-sm text-muted-foreground">
+          <p><span className="text-gold">Problema:</span> {project.problem}</p>
+          <p><span className="text-gold">Solución:</span> {project.solution}</p>
+          <p><span className="text-gold">Resultado:</span> {project.result}</p>
         </div>
-
-        <dl className="flex flex-col gap-4 border-l border-border pl-6">
-          {[
-            { k: 'Problema', v: project.problem },
-            { k: 'Solución', v: project.solution },
-            { k: 'Resultado', v: project.result },
-          ].map((row) => (
-            <div key={row.k} className="flex flex-col gap-1">
-              <dt className="text-[11px] uppercase tracking-[0.25em] text-gold/80">
-                {row.k}
-              </dt>
-              <dd className="text-sm leading-relaxed text-muted-foreground">
-                {row.v}
-              </dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </div>
   )
@@ -246,18 +213,81 @@ function FeaturedProject({
 
 export function Projects() {
   return (
-    <section id="proyectos" className="mx-auto max-w-6xl px-6 py-24 sm:py-32">
+    <section className="mx-auto max-w-6xl px-6 py-24">
+
       <SectionHeading
         eyebrow="Proyectos"
         title="Trabajo que habla por sí mismo"
-        description="Una selección de proyectos donde el diseño se convirtió en una ventaja real para el negocio."
+        description="Diseño estratégico aplicado a negocios reales."
       />
 
-      <div className="mt-20 flex flex-col gap-24 sm:gap-32">
+      {/* PRINCIPALES */}
+      <div className="mt-20 flex flex-col gap-24">
         {featured.map((p, i) => (
           <FeaturedProject key={p.name} project={p} index={i} />
         ))}
       </div>
+
+      {/* SECUNDARIOS HORIZONTAL */}
+      <div className="mt-32">
+  <h3 className="text-center font-heading text-3xl mb-10">
+    Otros proyectos destacados
+  </h3>
+
+  {/* WRAPPER CON FADE EN LOS BORDES */}
+  <div className="relative w-full overflow-hidden">
+
+    {/* FADE IZQUIERDA */}
+    <div className="pointer-events-none absolute left-0 top-0 h-full w-24 z-10 bg-gradient-to-r from-background to-transparent" />
+
+    {/* FADE DERECHA */}
+    <div className="pointer-events-none absolute right-0 top-0 h-full w-24 z-10 bg-gradient-to-l from-background to-transparent" />
+
+    {/* SCROLL INFINITO */}
+    <motion.div
+      className="flex gap-6 w-max"
+      animate={{ x: ['0%', '-50%'] }}
+      transition={{
+        duration: 28, // velocidad (más alto = más lento)
+        ease: 'linear',
+        repeat: Infinity,
+      }}
+    >
+
+      {/* DUPLICAMOS PARA LOOP PERFECTO */}
+      {[...secondaryProjects, ...secondaryProjects].map((p, i) => (
+        <motion.div
+          key={i}
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+          className="
+            min-w-[280px]
+            flex-shrink-0
+            rounded-2xl
+            border
+            border-border
+            bg-card
+            p-6
+            transition
+            hover:border-gold/60
+            hover:shadow-lg
+            cursor-pointer
+          "
+        >
+          <p className="mb-2 text-xs uppercase tracking-[0.25em] text-gold">
+            {p.category}
+          </p>
+
+          <h4 className="font-heading text-xl leading-snug">
+            {p.title}
+          </h4>
+        </motion.div>
+      ))}
+
+    </motion.div>
+  </div>
+</div>
+
     </section>
   )
 }
